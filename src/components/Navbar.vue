@@ -27,24 +27,34 @@
                                 </li>
                             </ul>
                         </div>
-                        <button class="btn btn-primary me-3" type="submit">Get started free</button>
+                        <button class="btn btn-primary me-3" type="submit">Get started</button>
                         <button class="btn btn-dark d-none d-lg-block" type="submit">Sign In</button>
                     </div>
                 </div>
             </div>
+            <MobileNavVue />
         </nav>
     </div>
 </template>
 
 <script setup>
-
+import MobileNavVue from './MobileNav.vue';
 </script>
 
 <style lang="scss" scoped>
+@import "../assets/base.scss";
 .navbar {
+    border-bottom: 0.5px solid grey;
     .navbar-brand {
         font-weight: bold;
         font-size: 30px;
+        color: $base-color;
+    }
+}
+
+@media (max-width: 991px) {
+    .navbar {
+        border-bottom: 0;
     }
 }
 </style>
