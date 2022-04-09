@@ -1,13 +1,15 @@
 <script setup>
 import { RouterView } from "vue-router";
-// import Navbar from '@/components/Navbar.vue'
-import Navbar1 from "./components/Navbar.vue";
 </script>
 
 <template>
-  <Navbar1 />
-  <RouterView />
+  <div class="">
+    <RouterView />
+  </div>
 </template>
 
-<style>
+<style lang="scss" scoped>
+.main_body {
+  margin-top: 150px;
+}
 </style>

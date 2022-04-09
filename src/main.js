@@ -3,9 +3,10 @@ import App from "./App.vue";
 import router from "./router";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap'
+import 'bulma/css/bulma.css'
+import axios from 'axios'
 
-import "vue-float-menu/dist/vue-float-menu.css";
-
+axios.defaults.baseURL = 'http://betapay-pms.herokuapp.com/api/'
 
 const app = createApp(App);
 app.use(router);
