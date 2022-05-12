@@ -1,45 +1,14 @@
-import { createStore } from 'vuex'
+// state: { status, user }
+// actions: { login, logout, register }
+// mutations: { loginSuccess, loginFailure, logout, registerSuccess, registerFailure }
 
-export default createStore({
-  state: {
-    user: {
-      username: ''
-    },
-    isAuthenticated: false,
-    token: ''
-  },
+import { createStore } from "vuex";
+import { auth } from "./auth.module";
 
-  getters: {
-  },
-
-  mutations: {
-    // initialize the store and check if user is authenticated
-    initializeStore(state) {
-      if (localStorage.getItem('token')) {
-        state.token = localStorage.getItem('token')
-        state.isAuthenticated = true
-      } else {
-        state.token = ''
-        state.isAuthenticated = false
-      }
-    },
-
-    // set token when user is logged in
-    setToken(state, token) {
-      state.token = token
-      state.isAuthenticated = true
-    },
-
-    // remove token when user logs out
-    removeToken(state) {
-      state.token = ''
-      state.isAuthenticated = false
-    }
-  },
-
-  actions: {
-  },
-
+const store = createStore({
   modules: {
-  }
-})
+    auth,
+  },
+});
+
+export default store;

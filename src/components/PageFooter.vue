@@ -1,9 +1,17 @@
 <template>
-  <div class="footer text-center">
-    <p class="pt-5">&copy; 2022. Ompaya</p>
+  <div class="fut">
+    <p class="" style="font-family: cursive">&copy; 2022. Ompaya</p>
   </div>
 </template>
 
 <script setup></script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.fut {
+  text-align: right;
+  padding-right: 10px;
+  padding-top: 10px;
+  background-color: black;
+  height: 50px;
+}
+</style>

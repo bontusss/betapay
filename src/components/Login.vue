@@ -6,21 +6,13 @@ import { Form, Field, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
 import "yup-phone";
 
-const successful = ref(false);
 const loading = ref(false);
 const message = ref("");
 const router = useRouter();
 
 const schema = yup.object().shape({
-  username: yup
-    .string()
-    .required("Username is required!")
-    .min(3, "Must be atleast 3 characters!")
-    .max(20, "Must be maximum 20 characters!"),
   email: yup.string().required("Email is required!").email("Email is invalid!"),
 
-  // using 'yup-phone' package to validate phone numbers for Nigeria only
-  phone: yup.string().phone("NG").required("Phone number is required"),
   password: yup
     .string()
     .required("Password is required!")
@@ -38,23 +30,23 @@ const loggedIn = computed(() => {
 //   }
 // });
 
-const handleRegister = (user) => {
-  message.value = "";
-  successful.value = false;
+//  created() {
+//     if (this.loggedIn) {
+//       this.$router.push("/profile");
+//     }
+
+const handleLogin = (user) => {
   loading.value = true;
-  store.dispatch("auth/register", user).then(
-    (data) => {
-      message.value = data.message;
-      successful.value = true;
-      loading.value = false;
+  store.dispatch("auth/login", user).then(
+    () => {
+      router.push("/");
     },
     (error) => {
+      loading.value = false;
       message.value =
         (error.response && error.response.data && error.esponse.data.message) ||
         error.message ||
         error.toString();
-      successful.value = false;
-      loading.value = false;
     }
   );
 };
@@ -168,21 +160,13 @@ const showPassword = () => {
         <div class="formbg-outer">
           <div class="formbg">
             <div class="formbg-inner padding-horizontal--48">
-              <span class="padding-bottom--15">Register your account</span>
+              <span class="padding-bottom--15">Sign in to your account</span>
               <Form
                 id="stripe-login"
-                @submit="handleRegister"
+                @submit="handleLogin"
                 :validation-schema="schema"
               >
                 <div v-if="!successful">
-                  <div class="field padding-bottom--24">
-                    <label for="username">Username</label>
-                    <Field type="text" name="username" />
-                    <ErrorMessage
-                      name="username"
-                      class="error-feedback text-danger"
-                    />
-                  </div>
                   <div class="field padding-bottom--24">
                     <label for="email">Email</label>
                     <Field type="email" name="email" />
@@ -191,14 +175,7 @@ const showPassword = () => {
                       class="error-feedback text-danger"
                     />
                   </div>
-                  <div class="field padding-bottom--24">
-                    <label for="phone">Phone Number</label>
-                    <Field type="phone" name="phone" />
-                    <ErrorMessage
-                      name="phone"
-                      class="error-feedback text-danger"
-                    />
-                  </div>
+
                   <div class="field padding-bottom--24">
                     <div class="grid--50-50">
                       <label for="password">Password</label>
@@ -244,19 +221,13 @@ const showPassword = () => {
                     {{ message }}
                   </div>
                 </div>
-
-                <div class="field">
-                  <a class="ssolink" href="#"
-                    >Use single sign-on (Google) instead</a
-                  >
-                </div>
               </Form>
             </div>
           </div>
           <div class="footer-link padding-top--24">
             <span
-              >Already have an account?
-              <RouterLink to="/login">SignIn</RouterLink></span
+              >Don't have an account?
+              <RouterLink to="/register"> Register</RouterLink></span
             >
             <div
               class="listing padding-top--24 padding-bottom--24 flex-flex center-center"

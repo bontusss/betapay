@@ -1,19 +1,14 @@
 <script setup>
 import IntroVue from "../components/Intro.vue";
-import LearnVue from "../components/Learn.vue";
-import ActionBannerVue from "../components/ActionBanner.vue";
 import BetaSignVue from "../components/BetaSign.vue";
 import PageFooter from "../components/PageFooter.vue";
 import NavbarVue from "../components/Navbar.vue";
 </script>
 
 <template>
-  <NavbarVue />
-  <IntroVue class="margin" />
-  <LearnVue class="margin" />
-  <ActionBannerVue class="margin" />
-  <BetaSignVue class="margin1" />
-  <PageFooter />
+  <IntroVue class="" />
+  <BetaSignVue class="" />
+  <!-- <PageFooter /> -->
 </template>
 
 <style lang="scss" scoped>
